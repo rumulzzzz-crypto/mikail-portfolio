@@ -238,3 +238,21 @@
  .collage-toggle{display:none}
 }
 @media print{.about-photos{max-width:300px}.team-archive{break-inside:avoid}.about-photo{box-shadow:none}.archive-stamp{display:none}.team-archive{display:block}.archive-actions{margin-top:14px}.collage-toggle{display:none}}
+
+/* A second card rises out of the green sleeve when the scene card is explored. */
+.pullout-card{position:absolute;z-index:2;top:265px;right:19px;width:66%;max-width:382px;min-height:195px;padding:21px 24px;display:flex;flex-direction:column;align-items:flex-start;border:1px solid #abb598;border-radius:9px;background:#e3eacb;color:var(--ink);box-shadow:0 16px 28px -23px #23282355;transform:translateY(38px) rotate(1deg);opacity:0;visibility:hidden;pointer-events:none;transition:transform .55s cubic-bezier(.2,.7,.2,1),opacity .3s,visibility .3s,box-shadow .55s}
+.pullout-kicker{font:8px var(--mono);letter-spacing:.09em;color:#5a624f}
+.pullout-card strong{font-size:26px;line-height:1.02;letter-spacing:-.06em;margin-top:14px}
+.pullout-copy{font:9px/1.5 var(--mono);margin-top:12px;color:#51594b}
+.pullout-action{display:flex;align-items:center;gap:7px;margin-top:auto;padding-top:11px;border-top:1px solid #b8c4a5;width:100%;font:10px var(--mono)}
+.pullout-action .icon{width:14px;height:14px}
+.hero-art.is-spread .pullout-card,.hero-art:focus-within .pullout-card{z-index:5;transform:translate(18px,-135px) rotate(-4deg);opacity:1;visibility:visible;pointer-events:auto;box-shadow:0 22px 38px -22px #23282370}
+@media(hover:hover) and (pointer:fine){.hero-art:hover .pullout-card{z-index:5;transform:translate(18px,-135px) rotate(-4deg);opacity:1;visibility:visible;pointer-events:auto;box-shadow:0 22px 38px -22px #23282370}}
+.resume-download{display:inline-flex;align-items:center;gap:9px;margin-top:18px;padding:9px 0;border-bottom:1px solid currentColor;font:10px var(--mono);color:var(--ink)}
+.resume-download .icon{width:14px;height:14px}
+.resume-download:hover{color:var(--orange-dark)}
+@media(max-width:1100px){.pullout-card{top:246px;right:5px;width:81%;max-width:345px;min-height:175px;padding:16px 18px}.pullout-card strong{font-size:22px;margin-top:10px}.pullout-copy{font-size:8px;margin-top:8px}.pullout-action{font-size:9px}.hero-art.is-spread .pullout-card,.hero-art:focus-within .pullout-card{transform:translate(5px,-110px) rotate(-4deg)}}
+@media(hover:hover) and (pointer:fine) and (max-width:1100px){.hero-art:hover .pullout-card{transform:translate(5px,-110px) rotate(-4deg)}}
+@media(max-width:650px){.pullout-card{top:236px;right:13px;width:78%;max-width:315px;min-height:155px;padding:12px 15px}.pullout-card strong{font-size:20px;margin-top:7px}.pullout-copy{font-size:7px;margin-top:6px}.pullout-action{font-size:8px;padding-top:5px}.hero-art.is-spread .pullout-card,.hero-art:focus-within .pullout-card{transform:translate(4px,-105px) rotate(-4deg)}}
+@media(hover:hover) and (pointer:fine) and (max-width:650px){.hero-art:hover .pullout-card{transform:translate(4px,-105px) rotate(-4deg)}}
+@media(prefers-reduced-motion:reduce){.pullout-card{transition:none}.hero-art:focus-within .pullout-card{transform:translate(18px,-135px) rotate(-4deg)}}
