@@ -14,7 +14,7 @@ function posterArt(clip,index){
  const isCinema=clip.art==='cinema';
  const geometry=isCinema?`<div class="film-top"></div><div class="film-bottom"></div><svg class="poster-star"><use href="#i-spark"/></svg>`:clip.art==='city'?`<div class="geom-corner"></div><div class="geom-circle"></div>`:`<div class="geom-fraction">${clip.art==='eighth'?'⅛':'¼'}</div><div class="geom-circle"></div>`;
  const name=isCinema?'С привкусом<br><i>в кино.</i>':escapeHtml(clip.short);
- return `<button class="work-poster color-${clip.color} ${isCinema?'cinema':''}" data-open="${clip.key}" aria-label="${escapeHtml(clip.title)} — описание и ссылка на ${clip.time}"><span class="poster-label"><span>${clip.label}</span><span class="poster-id">${String(index+1).padStart(2,'0')}</span></span><span class="poster-geometry" aria-hidden="true">${geometry}</span><span class="poster-name ${isCinema?'poster-title-cinema':''}" aria-hidden="true">${name}</span><span class="poster-play">${icon('play')}</span></button>`;
+ return `<button class="work-poster color-${clip.color} ${isCinema?'cinema':''}" data-open="${clip.key}" tabindex="-1" aria-hidden="true"><span class="poster-label" aria-hidden="true"><span>${clip.label}</span><span class="poster-id">${String(index+1).padStart(2,'0')}</span></span><span class="poster-geometry" aria-hidden="true">${geometry}</span><span class="poster-name ${isCinema?'poster-title-cinema':''}" aria-hidden="true">${name}</span><span class="poster-play" aria-hidden="true">${icon('play')}</span></button>`;
 }
 function render(){
  const clips=filteredClips(); const shown=state.expanded?clips:clips.slice(0,6);
@@ -33,7 +33,7 @@ document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListen
 document.querySelectorAll('[data-view]').forEach(button=>button.addEventListener('click',()=>{state.view=button.dataset.view;render();}));
 byId('season-filter').addEventListener('change',event=>{state.season=event.target.value;state.expanded=false;render();});
 byId('show-more').addEventListener('click',()=>{state.expanded=!state.expanded;render();if(!state.expanded)byId('works').scrollIntoView({behavior:matchMedia('(prefers-reduced-motion:reduce)').matches?'auto':'smooth'});});
-byId('video-grid').addEventListener('click',event=>{const button=event.target.closest('[data-open]');if(button)openVideo(button.dataset.open,button);});
+byId('video-grid').addEventListener('click',event=>{const button=event.target.closest('[data-open]');if(button)openVideo(button.dataset.open,button.closest('.work-card')?.querySelector('.work-title')||button);});
 function currentClip(){return CLIPS.find(c=>c.key===state.modalKeys[state.modalIndex]);}
 function openVideo(key,opener){
  state.modalKeys=filteredClips().map(c=>c.key);state.modalIndex=state.modalKeys.indexOf(key);
